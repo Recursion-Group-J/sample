@@ -16,6 +16,9 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build the Docker image
       run: |
+        docker login -u ${{secrets.HEROKU_USERNAME}} -p ${{secrets.HEROKU_API_KEY}} registry.heroku.com
         docker-compose up --build -d
         docker-compose exec -T web python manage.py test
+        docker build -t registry.heroku.com/recursion-group-j/web -f Dockerfile.prod .
+        docker push registry.heroku.com/recursion-aroup-j/web
       
