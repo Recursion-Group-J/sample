@@ -1,1 +1,1 @@
-web: gunicorn recursion-group-j.wsgi
+web: gunicorn recursion-group-j : app --log-file -
